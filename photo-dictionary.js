@@ -1,5 +1,4 @@
-<?php
-$terms = [
+export default [
     'aberration',
     'absolute resolution',
     'autofocus',

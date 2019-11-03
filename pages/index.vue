@@ -3,10 +3,10 @@
     <div>
       <logo />
       <h1 class="title">
-        ipsum-fun
+        IpsumFunApp
       </h1>
       <h2 class="subtitle">
-        A Fun Lorem Ipsum Generator
+        Lorem Ipsum, but more fun
       </h2>
       <div class="links">
         <a href="https://nuxtjs.org/" target="_blank" class="button--green">

@@ -1,6 +1,6 @@
-# ipsum-fun
+# IpsumFunApp
 
-> A Fun Lorem Ipsum Generator
+> Lorem Ipsum, but more fun
 
 ## Build Setup
 
