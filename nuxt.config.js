@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+
 module.exports = {
   mode: 'universal',
   /*
@@ -57,5 +59,6 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  }
+  },
+  serverMiddleware: [bodyParser.json(), '~/server/api']
 }

@@ -1,6 +1,6 @@
-# IpsumFunApp
+# NuxtExpress
 
-> Lorem Ipsum, but more fun
+> My groundbreaking Nuxt.js project
 
 ## Build Setup
 
