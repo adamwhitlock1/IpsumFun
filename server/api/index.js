@@ -1,3 +1,4 @@
+import { photoRequest } from './photo'
 const express = require('express')
 const router = express.Router()
 const app = express()
@@ -16,7 +17,7 @@ router.get('/photo', (req, res) => {
     message: 'PHOTO API ENDPOINT HIT 📸',
     badge: true
   })
-  res.send('Farts')
+  photoRequest(req, res, 'all the words')
 })
 
 consola.ready({
