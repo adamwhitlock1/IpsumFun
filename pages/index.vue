@@ -11,7 +11,10 @@
         name="paragraphs"
         type="text"
       />
-      <select v-model="selectedCategory">
+      <select
+        v-model="selectedCategory"
+        class="border-2 border-green-300 px-3 py-3 rounded"
+      >
         <option
           v-for="(option, index) in categories"
           :key="index"
