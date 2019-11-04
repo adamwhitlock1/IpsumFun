@@ -1,4 +1,4 @@
-export const photoDict = [
+export const dict = [
   'aberration',
   'absolute resolution',
   'autofocus',

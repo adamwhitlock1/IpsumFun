@@ -11,6 +11,15 @@
         name="paragraphs"
         type="text"
       />
+      <select v-model="selectedCategory">
+        <option
+          v-for="(option, index) in categories"
+          :key="index"
+          :value="option"
+        >
+          {{ option }}
+        </option>
+      </select>
       <button class="bg-green-500 text-white rounded p-3" @click="getIpsum">
         GET SOME IPSUM
       </button>
@@ -24,16 +33,27 @@ export default {
   data() {
     return {
       paragraphs: 5,
-      result: ''
+      result: '',
+      categories: [],
+      selectedCategory: 'photo'
     }
+  },
+  mounted() {
+    this.getCategories()
   },
   methods: {
     getIpsum() {
-      console.log(this.paragraphs)
-      this.$axios.get(`/api/photo?p=${this.paragraphs}`).then((res) => {
-        console.log(res.data)
-        this.result = ''
-        this.result = res.data.text
+      this.$axios
+        .get(`/api/type/${this.selectedCategory}?p=${this.paragraphs}`)
+        .then((res) => {
+          console.log(res.data)
+          this.result = ''
+          this.result = res.data.text
+        })
+    },
+    getCategories() {
+      this.$axios.get(`/api/categories`).then((res) => {
+        this.categories = res.data.categories
       })
     }
   }

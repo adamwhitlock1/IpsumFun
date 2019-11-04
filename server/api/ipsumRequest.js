@@ -1,13 +1,12 @@
-import { photoDict } from '../dictionary/photo'
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function createParagraph(words) {
+function createParagraph(words, dict) {
   let paragraphText = ''
   for (let ii = 0; ii < parseFloat(words); ii++) {
-    const randomWord = photoDict[randomIntFromInterval(0, photoDict.length - 1)]
+    const randomWord = dict[randomIntFromInterval(0, dict.length - 1)]
     if (ii === 0) {
       paragraphText += randomWord
     } else {
@@ -17,11 +16,11 @@ function createParagraph(words) {
   return paragraphText
 }
 
-function createResponse(paragraphs) {
+function createResponse(paragraphs, dict) {
   let responseText = ''
   for (let i = 0; i < parseFloat(paragraphs); i++) {
     const words = randomIntFromInterval(20, 50)
-    const paragraphText = createParagraph(words)
+    const paragraphText = createParagraph(words, dict)
     if (i === 0) {
       responseText += paragraphText
     } else {
@@ -31,7 +30,7 @@ function createResponse(paragraphs) {
   return responseText
 }
 
-export function photoRequest(req, res, words) {
+export function ipsumRequest(req, res, dict) {
   if (!req.query.p) {
     res.status('400').json({
       status: 'Error',
@@ -39,8 +38,8 @@ export function photoRequest(req, res, words) {
     })
   } else {
     res.json({
-      dictLength: photoDict.length,
-      text: createResponse(req.query.p)
+      dictLength: dict.length,
+      text: createResponse(req.query.p, dict)
     })
   }
 }

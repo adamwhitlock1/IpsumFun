@@ -1,4 +1,5 @@
-import { photoRequest } from './photo'
+import { ipsumRequest } from './ipsumRequest'
+import { loadDict } from './loadDict'
 const express = require('express')
 const router = express.Router()
 const app = express()
@@ -12,12 +13,41 @@ router.use((req, res, next) => {
   next()
 })
 
-router.get('/photo', (req, res) => {
-  consola.info({
-    message: 'PHOTO API ENDPOINT HIT 📸',
-    badge: true
+const dicts = loadDict()
+async function getDictArray(router) {
+  const dictArrays = {}
+  for (const key in dicts.filenames) {
+    if (dicts.filenames.hasOwnProperty(key)) {
+      dictArrays[key] = await import('../dictionary/' + dicts.filenames[key])
+    }
+  }
+  return dictArrays
+}
+
+let allDicts = {}
+let dictNames = []
+getDictArray()
+  .then((dicts) => {
+    allDicts = dicts
+    dictNames = Object.keys(allDicts)
   })
-  photoRequest(req, res, 'all the words')
+  .catch((err) => {
+    console.error(err)
+  })
+
+router.get('/type/:type', (req, res) => {
+  if (dictNames.includes(req.params.type)) {
+    ipsumRequest(req, res, allDicts[req.params.type].dict)
+  } else {
+    res.status(400).json({
+      status: 'Error',
+      message: 'That type does not exist... yet'
+    })
+  }
+})
+
+router.get('/categories', (req, res) => {
+  res.status(200).json({ categories: dictNames })
 })
 
 consola.ready({
