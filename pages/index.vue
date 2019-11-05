@@ -11,6 +11,21 @@
         name="paragraphs"
         type="text"
       />
+
+      <p class="mt-4">Paragraph length</p>
+      <input id="short" v-model="paragraphLength" type="radio" value="short" />
+      <label for="short">short</label>
+      <input
+        id="medium"
+        v-model="paragraphLength"
+        type="radio"
+        value="medium"
+      />
+      <label for="medium">medium</label>
+      <input id="long" v-model="paragraphLength" type="radio" value="long" />
+      <label for="long">long</label>
+
+      <p class="mt-4">Subject matter</p>
       <select
         v-model="selectedCategory"
         class="border-2 border-green-300 px-3 py-3 rounded"
@@ -23,7 +38,10 @@
           {{ option }}
         </option>
       </select>
-      <button class="bg-green-500 text-white rounded p-3" @click="getIpsum">
+      <button
+        class="bg-green-500 text-white rounded p-3 block mt-4"
+        @click="getIpsum"
+      >
         GET SOME IPSUM
       </button>
       <p class="result mt-4" v-html="result"></p>
@@ -36,6 +54,7 @@ export default {
   data() {
     return {
       paragraphs: 5,
+      paragraphLength: 'medium',
       result: '',
       categories: [],
       selectedCategory: 'photo'
