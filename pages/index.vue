@@ -66,7 +66,9 @@ export default {
   methods: {
     getIpsum() {
       this.$axios
-        .get(`/api/type/${this.selectedCategory}?p=${this.paragraphs}`)
+        .get(
+          `/api/type/${this.selectedCategory}?p=${this.paragraphs}&l=${this.paragraphLength}`
+        )
         .then((res) => {
           console.log(res.data)
           this.result = ''
