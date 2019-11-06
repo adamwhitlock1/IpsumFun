@@ -88,6 +88,26 @@
               class="py-2 px-3 text-gray-700"
             />
             <label for="long" class="py-2 pl-1 pr-3 text-gray-700">long</label>
+            <input
+              id="custom"
+              v-model="paragraphLength"
+              type="radio"
+              value="custom"
+              class="py-2 px-3 text-gray-700"
+            />
+            <label for="long" class="py-2 pl-1 pr-3 text-gray-700"
+              >custom</label
+            >
+          </div>
+          <div v-if="paragraphLength === 'custom'" class="w-1/2 mb-6">
+            <input
+              v-model="customLength"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+            <span class="px-1">{{ customLength }} words per paragraph</span>
           </div>
           <div class="flex px-1">
             <button
@@ -121,7 +141,8 @@ export default {
       paragraphLength: 'medium',
       result: '',
       categories: [],
-      selectedCategory: 'photo'
+      selectedCategory: 'photo',
+      customLength: 15
     }
   },
   mounted() {
@@ -132,7 +153,7 @@ export default {
     getIpsum() {
       this.$axios
         .get(
-          `/api/type/${this.selectedCategory}?p=${this.paragraphs}&l=${this.paragraphLength}`
+          `/api/type/${this.selectedCategory}?p=${this.paragraphs}&l=${this.paragraphLength}&w=${this.customLength}`
         )
         .then((res) => {
           console.log(res.data)
@@ -152,5 +173,35 @@ export default {
 <style>
 .result {
   white-space: pre-line;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
 }
 </style>
