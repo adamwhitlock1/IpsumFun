@@ -16,7 +16,7 @@ function createParagraph(words, dict) {
   return paragraphText
 }
 
-function paragraphLength(length) {
+function paragraphLength(length, numberOfWords) {
   let words = 10
   switch (length) {
     case 'short':
@@ -28,15 +28,18 @@ function paragraphLength(length) {
     case 'long':
       words = randomIntFromInterval(35, 60)
       break
+    case 'custom':
+      words = numberOfWords
+      break
   }
   return words
 }
 
-function createResponse(paragraphs, dict, length) {
+function createResponse(paragraphs, dict, length, numberOfWords) {
   let responseText = ''
 
   for (let i = 0; i < parseFloat(paragraphs); i++) {
-    const words = paragraphLength(length)
+    const words = paragraphLength(length, numberOfWords)
     const paragraphText = createParagraph(words, dict)
     if (i === 0) {
       responseText += paragraphText
@@ -56,7 +59,7 @@ export function ipsumRequest(req, res, dict) {
   } else {
     res.json({
       dictLength: dict.length,
-      text: createResponse(req.query.p, dict, req.query.l)
+      text: createResponse(req.query.p, dict, req.query.l, req.query.w)
     })
   }
 }
