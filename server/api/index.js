@@ -38,8 +38,9 @@ getDictArray()
   })
 
 router.get('/type/:type', (req, res) => {
-  console.log(req)
+  console.log(req.query)
   if (dictNames.includes(req.params.type)) {
+    console.log(req.params.type)
     ipsumRequest(req, res, allDicts[req.params.type].dict)
   } else {
     res.status(400).json({
