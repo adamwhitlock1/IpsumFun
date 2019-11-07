@@ -51,6 +51,7 @@ function createResponse(paragraphs, dict, length, numberOfWords) {
 }
 
 export function ipsumRequest(req, res, dict) {
+  console.log(req.query)
   if (!req.query.p) {
     res.status('400').json({
       status: 'Error',
