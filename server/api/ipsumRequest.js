@@ -51,8 +51,8 @@ function createResponse(paragraphs, dict, length, numberOfWords) {
 }
 
 export function ipsumRequest(req, res, dict) {
-  console.log(req.query)
-  if (!req.query.p) {
+  console.log(req.params)
+  if (!req.params.p) {
     res.status('400').json({
       status: 'Error',
       message: 'Paragraph qty requires as a query parameter ex: "p=5"'
@@ -60,7 +60,7 @@ export function ipsumRequest(req, res, dict) {
   } else {
     res.json({
       dictLength: dict.length,
-      text: createResponse(req.query.p, dict, req.query.l, req.query.w)
+      text: createResponse(req.params.p, dict, req.params.l, req.params.w)
     })
   }
 }
