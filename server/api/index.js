@@ -18,7 +18,9 @@ async function getDictArray(router) {
   const dictArrays = {}
   for (const key in dicts.filenames) {
     if (dicts.filenames.hasOwnProperty(key)) {
-      dictArrays[key] = await import('../dictionary/' + dicts.filenames[key])
+      dictArrays[key] = await import(
+        process.cwd() + '/server/dictionary/' + dicts.filenames[key]
+      )
     }
   }
   return dictArrays

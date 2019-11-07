@@ -2,7 +2,7 @@ const fs = require('fs')
 
 export function loadDict() {
   const contents = fs.readFileSync(
-    '/Users/adamwhitlock/Documents/GitHub/IpsumFun/server/dictionary/config.json'
+    process.cwd() + '/server/dictionary/config.json'
   )
 
   const jsonContents = JSON.parse(contents)
