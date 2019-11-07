@@ -153,7 +153,7 @@ export default {
     getIpsum() {
       this.$axios
         .get(
-          `https://ipsum-fun.herokuapp.com/api/type/${this.selectedCategory}?p=${this.paragraphs}&l=${this.paragraphLength}&w=${this.customLength}`
+          `https://ipsum-fun.herokuapp.com/api/type/${this.selectedCategory}/?p=${this.paragraphs}&l=${this.paragraphLength}&w=${this.customLength}`
         )
         .then((res) => {
           console.log(res.data)
