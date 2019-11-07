@@ -153,7 +153,7 @@ export default {
     getIpsum() {
       this.$axios
         .get(
-          `./api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
+          `https://ipsum-fun.herokuapp.com/api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
         )
         .then((res) => {
           console.log(res.data)
@@ -162,9 +162,11 @@ export default {
         })
     },
     getCategories() {
-      this.$axios.get(`./api/categories`).then((res) => {
-        this.categories = res.data.categories
-      })
+      this.$axios
+        .get(`https://ipsum-fun.herokuapp.com/api/categories`)
+        .then((res) => {
+          this.categories = res.data.categories
+        })
     }
   }
 }
