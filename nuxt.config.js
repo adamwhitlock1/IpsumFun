@@ -19,6 +19,9 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://ipsum-fun.herokuapp.com/'
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -43,10 +46,7 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
-  ],
+  modules: [],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

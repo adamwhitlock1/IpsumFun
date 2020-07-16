@@ -165,6 +165,7 @@
 
 <script>
 import CopyToClipboard from '../components/CopyToClipboard'
+import axios from '~/plugins/axios'
 export default {
   head() {
     return {
@@ -190,7 +191,7 @@ export default {
   },
   methods: {
     getIpsum() {
-      this.$axios
+      axios
         .get(
           `/api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
         )
@@ -201,7 +202,7 @@ export default {
         })
     },
     getCategories() {
-      this.$axios.get(`/api/categories`).then((res) => {
+      axios.get(`/api/categories`).then((res) => {
         this.categories = res.data.categories
       })
     }

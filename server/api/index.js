@@ -1,9 +1,12 @@
+import cors from 'cors'
 import { ipsumRequest } from './ipsumRequest'
 import { loadDict } from './loadDict'
 const express = require('express')
 const router = express.Router()
 const app = express()
 const consola = require('consola')
+
+app.use(cors())
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
