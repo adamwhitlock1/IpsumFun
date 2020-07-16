@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 
 module.exports = {
+  telemetry: false,
   mode: 'universal',
   /*
    ** Headers of the page

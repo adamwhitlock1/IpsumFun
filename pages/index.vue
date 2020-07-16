@@ -1,9 +1,13 @@
 <template>
-  <div class="container object-center mx-auto">
-    <div class="flex align-middle align-items-center align-content-center">
+  <div class="object-center min-h-screen mx-auto overlapping-circles">
+    <div
+      class="container flex mx-auto align-middle align-items-center align-content-center"
+    >
       <div class="w-full">
-        <div class="px-8 pt-6 pb-8 mt-8 mb-4 bg-white rounded shadow">
-          <h1 class="mb-4 font-mono text-3xl font-hairline text-blue-600">
+        <div
+          class="px-8 pt-6 pb-8 mt-8 mb-4 bg-white border-t-4 border-b-4 border-blue-300 rounded shadow-xl"
+        >
+          <h1 class="mb-4 font-mono text-3xl font-extrabold text-blue-600">
             Ipsum Fun
           </h1>
           <div class="flex">
@@ -25,7 +29,7 @@
               <label
                 for="subject"
                 class="block mb-2 text-sm font-bold text-gray-700"
-                >Subject matter</label
+                >subject matter</label
               >
               <div class="relative inline-block w-64">
                 <select
@@ -111,10 +115,17 @@
           </div>
           <div class="flex px-1">
             <button
-              class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+              class="inline-flex items-center px-4 py-2 font-bold text-white transition duration-300 bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="button"
               @click="getIpsum"
             >
+              <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-2">
+                <path
+                  fill-rule="evenodd"
+                  d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
               Get Some Ipsum
             </button>
             <CopyToClipboard :text="result"></CopyToClipboard>
@@ -122,10 +133,11 @@
         </div>
       </div>
     </div>
-    <p
-      class="px-6 py-4 mt-4 border border-gray-100 border-solid rounded-lg shadow result"
-      v-html="result"
-    ></p>
+    <div
+      class="container mx-auto mt-6 bg-white border-t-4 border-b-4 border-blue-300 rounded-lg shadow-xl"
+    >
+      <p class="p-8 result" v-html="result"></p>
+    </div>
   </div>
 </template>
 
@@ -203,5 +215,10 @@ export default {
   border-radius: 50%;
   background: #4caf50;
   cursor: pointer;
+}
+
+.overlapping-circles {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8e8e8' fill-opacity='0.58'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 </style>
