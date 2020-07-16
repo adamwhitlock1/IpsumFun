@@ -1,37 +1,37 @@
 <template>
-  <div class="mx-auto container object-center">
+  <div class="container object-center mx-auto">
     <div class="flex align-middle align-items-center align-content-center">
       <div class="w-full">
-        <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4 mt-8">
-          <h1 class="text-2xl text-blue-600 font-mono font-hairline mb-4">
+        <div class="px-8 pt-6 pb-8 mt-8 mb-4 bg-white rounded shadow">
+          <h1 class="mb-4 font-mono text-3xl font-hairline text-blue-600">
             Ipsum Fun
           </h1>
           <div class="flex">
-            <div class="mb-4 px-1">
+            <div class="px-1 mb-4">
               <label
                 for="paragraphs"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block mb-2 text-sm font-bold text-gray-700"
                 ># of paragraphs</label
               >
               <input
                 id="paragraphs"
                 v-model="paragraphs"
-                class="shadow appearance-none border rounded w-full py-2 px-3 border-gray-100 hover:border-gray-500 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="w-full px-3 py-2 leading-tight text-gray-700 border border-gray-100 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline"
                 name="paragraphs"
                 type="text"
               />
             </div>
-            <div class="mb-4 px-1">
+            <div class="px-1 mb-4">
               <label
                 for="subject"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block mb-2 text-sm font-bold text-gray-700"
                 >Subject matter</label
               >
-              <div class="inline-block relative w-64">
+              <div class="relative inline-block w-64">
                 <select
                   id="subject"
                   v-model="selectedCategory"
-                  class="block appearance-none w-full bg-white border border-gray-100 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                  class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-100 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline"
                 >
                   <option
                     v-for="(option, index) in categories"
@@ -42,10 +42,10 @@
                   </option>
                 </select>
                 <div
-                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                  class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none"
                 >
                   <svg
-                    class="fill-current h-4 w-4"
+                    class="w-4 h-4 fill-current"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                   >
@@ -57,8 +57,8 @@
               </div>
             </div>
           </div>
-          <div class="mb-6 px-1">
-            <p class="block text-gray-700 text-sm font-bold mb-2">
+          <div class="px-1 mb-6">
+            <p class="block mb-2 text-sm font-bold text-gray-700">
               paragraph length
             </p>
             <input
@@ -75,7 +75,7 @@
               v-model="paragraphLength"
               type="radio"
               value="medium"
-              class="py-2 px-3 text-gray-700"
+              class="px-3 py-2 text-gray-700"
             />
             <label for="medium" class="py-2 pl-1 pr-3 text-gray-700"
               >medium</label
@@ -85,7 +85,7 @@
               v-model="paragraphLength"
               type="radio"
               value="long"
-              class="py-2 px-3 text-gray-700"
+              class="px-3 py-2 text-gray-700"
             />
             <label for="long" class="py-2 pl-1 pr-3 text-gray-700">long</label>
             <input
@@ -93,9 +93,9 @@
               v-model="paragraphLength"
               type="radio"
               value="custom"
-              class="py-2 px-3 text-gray-700"
+              class="px-3 py-2 text-gray-700"
             />
-            <label for="long" class="py-2 pl-1 pr-3 text-gray-700"
+            <label for="custom" class="py-2 pl-1 pr-3 text-gray-700"
               >custom</label
             >
           </div>
@@ -111,7 +111,7 @@
           </div>
           <div class="flex px-1">
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="button"
               @click="getIpsum"
             >
@@ -123,7 +123,7 @@
       </div>
     </div>
     <p
-      class="result mt-4 py-4 px-6 border-solid border-gray-100 rounded-lg shadow border"
+      class="px-6 py-4 mt-4 border border-gray-100 border-solid rounded-lg shadow result"
       v-html="result"
     ></p>
   </div>
@@ -141,7 +141,7 @@ export default {
       paragraphLength: 'medium',
       result: '',
       categories: [],
-      selectedCategory: 'photo',
+      selectedCategory: 'programming',
       customLength: 15
     }
   },
@@ -153,7 +153,7 @@ export default {
     getIpsum() {
       this.$axios
         .get(
-          `https://ipsum-fun.herokuapp.com/api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
+          `/api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
         )
         .then((res) => {
           console.log(res.data)
@@ -162,11 +162,9 @@ export default {
         })
     },
     getCategories() {
-      this.$axios
-        .get(`https://ipsum-fun.herokuapp.com/api/categories`)
-        .then((res) => {
-          this.categories = res.data.categories
-        })
+      this.$axios.get(`/api/categories`).then((res) => {
+        this.categories = res.data.categories
+      })
     }
   }
 }
