@@ -3,7 +3,7 @@
     <div
       class="container flex mx-auto align-middle align-items-center align-content-center"
     >
-      <div class="w-full">
+      <div class="block md:flex md:w-1/2">
         <div
           class="px-8 pt-6 pb-8 mt-8 mb-4 bg-white border-t-4 border-b-4 border-blue-300 rounded shadow-xl"
         >
@@ -132,6 +132,28 @@
           </div>
         </div>
       </div>
+      <div class="hidden ml-6 md:w-1/2 md:flex">
+        <div
+          class="flex flex-wrap items-center px-8 pt-6 pb-8 mt-8 mb-4 bg-white border-t-4 border-b-4 border-blue-300 rounded shadow-xl"
+        >
+          <p class="w-full">
+            Ipsum Fun is a simple lorem ipsum generator built in Nuxt, Vue,
+            Tailwind, and Express. 🧱
+          </p>
+          <p class="w-full">
+            The generator will produce various sizes of random text pertaining
+            to a couple subject that are near and dear to my 💜 . Ipsum Fun was
+            built by me, Adam Whitlock, in my free time, and I hope you enjoy
+            using it.
+          </p>
+          <p class="w-full mt-2">
+            Check out more at
+            <a class="font-bold text-green-500" href="https://codestuff.io"
+              >Codestuff.io ✨</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
     <div
       class="container mx-auto mt-6 bg-white border-t-4 border-b-4 border-blue-300 rounded-lg shadow-xl"
@@ -144,6 +166,11 @@
 <script>
 import CopyToClipboard from '../components/CopyToClipboard'
 export default {
+  head() {
+    return {
+      title: 'Ipsum Fun'
+    }
+  },
   components: {
     CopyToClipboard
   },
