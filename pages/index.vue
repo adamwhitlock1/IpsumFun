@@ -146,8 +146,20 @@
           </p>
           <p class="w-full mt-2">
             Check out more at
-            <a class="font-bold text-green-500" href="https://codestuff.io"
+            <a
+              class="font-bold text-green-500"
+              target="_blank"
+              href="https://codestuff.io"
               >Codestuff.io ✨</a
+            >
+          </p>
+          <p class="w-full mt-2">
+            App hosted on
+            <a
+              href="https://cyclic.sh"
+              class="font-bold text-green-500"
+              target="_blank"
+              >Cyclic.sh</a
             >
           </p>
         </div>
