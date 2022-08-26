@@ -20,7 +20,8 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'https://ipsum-fun.herokuapp.com/'
+    baseUrl:
+      process.env.BASE_URL || 'https://odd-blue-starfish-tutu.cyclic.app/'
   },
   /*
    ** Customize the progress-bar color
