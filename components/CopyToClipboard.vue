@@ -1,9 +1,14 @@
 <template>
   <div class="flex items-center">
+    <transition name="bounce">
+      <div v-if="copyConfirm" class="inline-flex px-4">
+        {{ copyConfirm }}
+      </div>
+    </transition>
     <button
+      @click="copyIpsum"
       class="inline-flex items-center px-4 py-2 ml-2 font-bold text-white transition duration-300 bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline"
       type="button"
-      @click="copyIpsum"
     >
       <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-2">
         <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
@@ -13,11 +18,6 @@
       </svg>
       Copy To Clipboard
     </button>
-    <transition name="bounce">
-      <div v-if="copyConfirm" class="inline-flex px-4">
-        {{ copyConfirm }}
-      </div>
-    </transition>
   </div>
 </template>
 

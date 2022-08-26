@@ -115,9 +115,9 @@
           </div>
           <div class="flex px-1">
             <button
+              @click="getIpsum"
               class="inline-flex items-center px-4 py-2 font-bold text-white transition duration-300 bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               type="button"
-              @click="getIpsum"
             >
               <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-2">
                 <path
@@ -128,7 +128,6 @@
               </svg>
               Get Some Ipsum
             </button>
-            <CopyToClipboard :text="result"></CopyToClipboard>
           </div>
         </div>
       </div>
@@ -136,15 +135,14 @@
         <div
           class="flex flex-wrap items-center px-8 pt-6 pb-8 mt-8 mb-4 bg-white border-t-4 border-b-4 border-blue-300 rounded shadow-xl"
         >
+          <h2 class="mb-4 font-mono text-3xl font-extrabold text-blue-600">
+            Welcome!
+          </h2>
           <p class="w-full">
             Ipsum Fun is a simple lorem ipsum generator built in Nuxt, Vue,
-            Tailwind, and Express. 🧱
-          </p>
-          <p class="w-full">
-            The generator will produce various sizes of random text pertaining
-            to a couple subject that are near and dear to my 💜 . Ipsum Fun was
-            built by me, Adam Whitlock, in my free time, and I hope you enjoy
-            using it.
+            Tailwind, and Express. 🧱 The generator will produce random chunks
+            of text pertaining to a some subjects that are near and dear to my
+            💜 . Ipsum Fun was built by Adam Whitlock. Enjoy!
           </p>
           <p class="w-full mt-2">
             Check out more at
@@ -158,13 +156,18 @@
     <div
       class="container mx-auto mt-6 bg-white border-t-4 border-b-4 border-blue-300 rounded-lg shadow-xl"
     >
-      <p class="p-8 result" v-html="result"></p>
+      <LoadingIndicator v-if="!result"></LoadingIndicator>
+      <p v-if="result" v-html="result" class="p-8 result"></p>
+      <div class="mb-8 mr-8 flex justify-end">
+        <CopyToClipboard :text="result"></CopyToClipboard>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CopyToClipboard from '../components/CopyToClipboard'
+import LoadingIndicator from '../components/LoadingIndicator'
 import axios from '~/plugins/axios'
 export default {
   head() {
@@ -173,7 +176,8 @@ export default {
     }
   },
   components: {
-    CopyToClipboard
+    CopyToClipboard,
+    LoadingIndicator
   },
   data() {
     return {
@@ -191,14 +195,15 @@ export default {
   },
   methods: {
     getIpsum() {
+      this.result = ''
       axios
         .get(
           `/api/type/${this.selectedCategory}/${this.paragraphs}/${this.paragraphLength}/${this.customLength}`
         )
         .then((res) => {
-          console.log(res.data)
-          this.result = ''
-          this.result = res.data.text
+          setTimeout(() => {
+            this.result = res.data.text
+          }, 750)
         })
     },
     getCategories() {
